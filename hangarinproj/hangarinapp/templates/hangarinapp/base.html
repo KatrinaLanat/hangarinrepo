@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Hangarin Dashboard{% endblock %}</title>
+
+  <!-- Bootstrap & Ready Dashboard CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ready.css' %}">
+  <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100vh;
+      background: #1a2035;
+      color: #fff;
+      position: fixed;
+      width: 230px;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      transition: all 0.3s;
+    }
+
+    .sidebar h5 {
+      font-weight: 600;
+      margin: 0;
+      color: #fff;
+    }
+
+    .sidebar a {
+      color: #adb5bd;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background-color: #2a2f45;
+      color: #fff;
+    }
+
+    /* Main Panel */
+    .main-panel {
+      margin-left: 230px;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+      padding-bottom: 50px;
+      transition: all 0.3s;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #fff !important;
+      border-bottom: 1px solid #dee2e6;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: #1a2035 !important;
+    }
+
+    /* Content */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .page-header h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .main-panel {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="p-3 text-center border-bottom border-secondary">
+      <h5>🧭 Hangarin</h5>
+    </div>
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+      <i class="bi bi-speedometer2"></i> Dashboard
+    </a>
+    <a href="{% url 'category-list' %}" class="{% if request.resolver_match.url_name == 'category-list' %}active{% endif %}">
+      <i class="bi bi-folder2-open"></i> Categories
+    </a>
+    <a href="{% url 'priority-list' %}" class="{% if request.resolver_match.url_name == 'priority-list' %}active{% endif %}">
+      <i class="bi bi-lightning-charge"></i> Priorities
+    </a>
+    <a href="{% url 'task-list' %}" class="{% if request.resolver_match.url_name == 'task-list' %}active{% endif %}">
+      <i class="bi bi-list-task"></i> Tasks
+    </a>
+    <a href="{% url 'subtask-list' %}" class="{% if request.resolver_match.url_name == 'subtask-list' %}active{% endif %}">
+      <i class="bi bi-diagram-3"></i> SubTasks
+    </a>
+    <a href="{% url 'note-list' %}" class="{% if request.resolver_match.url_name == 'note-list' %}active{% endif %}">
+      <i class="bi bi-journal-text"></i> Notes
+    </a>
+  </div>
+
+  <!-- Main Panel -->
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <span class="navbar-brand">Hangarin Dashboard</span>
+        <div class="ms-auto d-flex align-items-center">
+          <div class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-1"></i> Admin
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid mt-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+
+  <!-- JS Scripts -->
+  <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/ready.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">📊 Dashboard Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h4>{{ task_count }}</h4>
+          <p class="mb-0">Tasks</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h4>{{ category_count }}</h4>
+          <p class="mb-0">Categories</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h4>{{ note_count }}</h4>
+          <p class="mb-0">Notes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h4>{{ subtask_count }}</h4>
+          <p class="mb-0">SubTasks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
