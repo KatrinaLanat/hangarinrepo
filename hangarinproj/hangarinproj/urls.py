@@ -1,12 +1,19 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
+from hangarinapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('hangarinapp.urls')),  # app URLs
 
-    # Auth URLs
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    # Root URL handles authentication check
+    path('', views.root_redirect, name='root'),
+
+    # Your app URLs
+    path('app/', include('hangarinapp.urls')),
+
+    # Allauth URLs for login, logout, signup, social auth
+    path('accounts/', include('allauth.urls')),
+
+    # PWA URLs for offline and installable features
+    path('', include('pwa.urls')),  # This should be at the bottom
 ]
