@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
-{% block title %}Delete {{ type }} | Hangarin{% endblock %}
+{% block title %}Delete Category | Hangarin{% endblock %}
 
 {% block content %}
+<div class="page-header mb-3">
+  <h2>❌ Delete Category</h2>
+</div>
+
 <div class="card shadow-sm border-0 p-4">
-  <h3>Are you sure you want to delete this {{ type }}?</h3>
-  <form method="POST">
+  <p>Are you sure you want to delete <strong>{{ object.name }}</strong>?</p>
+
+  <form method="post" class="d-flex gap-2">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="javascript:history.back()" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-girly-outline-danger">Yes, Delete</button>
+    <a href="{% url 'category-list' %}" class="btn btn-girly-outline">Cancel</a>
   </form>
 </div>
 {% endblock %}

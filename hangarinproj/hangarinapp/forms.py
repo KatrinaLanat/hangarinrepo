@@ -29,3 +29,7 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'content', 'category']
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'flow-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

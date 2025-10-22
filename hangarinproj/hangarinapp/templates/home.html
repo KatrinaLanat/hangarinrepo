@@ -2,45 +2,63 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
+<div class="page-header text-center mb-4">
+    <h2>Dashboard</h2>
+</div>
+
 <div class="container">
-  <h2 class="mb-4">📊 Dashboard Overview</h2>
-
-  <div class="row">
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm">
-        <div class="card-body text-center">
-          <h4>{{ task_count }}</h4>
-          <p class="mb-0">Tasks</p>
+    <!-- Total Tasks - light pink -->
+    <div class="col-12 mb-3">
+        <div class="card" style="background-color: #ffe4ec; color: #5a2a4c;">
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">Total Tasks</h5>
+                <p class="card-text fs-4 fw-semibold">{{ total_tasks }}</p>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm">
-        <div class="card-body text-center">
-          <h4>{{ category_count }}</h4>
-          <p class="mb-0">Categories</p>
+    <!-- Completed Tasks - soft rose -->
+    <div class="col-12 mb-3">
+        <div class="card" style="background-color: #f8c9d4; color: #4a1f39;">
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">Completed Tasks</h5>
+                <p class="card-text fs-4 fw-semibold">{{ completed_tasks }}</p>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm">
-        <div class="card-body text-center">
-          <h4>{{ note_count }}</h4>
-          <p class="mb-0">Notes</p>
+    <!-- In Progress - medium pink -->
+    <div class="col-12 mb-3">
+        <div class="card" style="background-color: #f09ab6; color: #3e122c;">
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">In Progress</h5>
+                <p class="card-text fs-4 fw-semibold">{{ in_progress_tasks }}</p>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm">
-        <div class="card-body text-center">
-          <h4>{{ subtask_count }}</h4>
-          <p class="mb-0">SubTasks</p>
+    <!-- Pending Tasks - deep rose -->
+    <div class="col-12 mb-3">
+        <div class="card" style="background-color: #e56a91; color: #fff;">
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">Pending Tasks</h5>
+                <p class="card-text fs-4 fw-semibold">{{ pending_tasks }}</p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Motivation Quote Card -->
+    <div class="card mt-4 shadow-sm border-0" style="background-color: #fff0f6;">
+        <div class="card-header text-center border-0" style="background-color: #fcd5e5; color: #5a2a4c;">
+            <h5>🌸 Daily Motivation</h5>
+        </div>
+        <div class="card-body text-center">
+            <blockquote class="blockquote mb-0 text-secondary">
+                <p class="fs-5 fst-italic">
+                    "Small progress is still progress — keep going!"
+                </p>
+            </blockquote>
+        </div>
+    </div>
 </div>
 {% endblock %}

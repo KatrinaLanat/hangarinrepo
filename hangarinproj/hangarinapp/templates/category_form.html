@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}{{ view.title }} | Hangarin{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <h2>📂 {{ view.title }}</h2>
+    <a href="{% url 'category-list' %}" class="btn btn-outline-pink">
+        <i class="bi bi-arrow-left"></i> Back to Categories
+    </a>
+</div>
+
+<div class="card shadow-sm border-0 p-4">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="{{ form.name.id_for_label }}" class="form-label fw-semibold">Category Name</label>
+            {{ form.name|add_class:"form-control form-control-lg rounded-pill" }}
+            {% if form.name.errors %}
+                <div class="text-danger small mt-1">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label fw-semibold">Description</label>
+            {{ form.description|add_class:"form-control form-control-lg rounded-pill" }}
+            {% if form.description.errors %}
+                <div class="text-danger small mt-1">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-pink btn-lg mt-3 w-100">
+            <i class="bi bi-save"></i> Save Category
+        </button>
+    </form>
+</div>
+
+<!-- Optional Footer Image -->
+<div class="footer-decor mt-5 text-center">
+    <img src="{% static 'images/pinky.jpg' %}" alt="Decorative Image"style="max-width: 15000px;">
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Category | Hangarin{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <h2>🗑️ Delete Category</h2>
+    <a href="{% url 'category-list' %}" class="btn btn-outline-pink">
+        <i class="bi bi-arrow-left"></i> Back to Categories
+    </a>
+</div>
+
+<div class="card shadow-sm border-0 p-4 text-center">
+    <p class="mb-4 fw-semibold">Are you sure you want to delete the category:</p>
+    <h4 class="mb-4 text-danger">{{ object.name }}</h4>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-pink btn-lg me-2">
+            <i class="bi bi-trash"></i> Yes, Delete
+        </button>
+        <a href="{% url 'category-list' %}" class="btn btn-outline-pink btn-lg">
+            <i class="bi bi-x-circle"></i> Cancel
+        </a>
+    </form>
+</div>
+
+<!-- Footer Decor -->
+<div class="footer-decor mt-5 text-center">
+    <img src="{% static 'images/pinky.jpg' %}" alt="Decorative Image"style="max-width: 15000px;">
+</div>
+{% endblock %}

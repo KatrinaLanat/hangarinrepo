@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}{{ view.title }} | Hangarin{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <h2>⚡ {{ view.title }}</h2>
+    <a href="{% url 'priority-list' %}" class="btn btn-pink-outline">Back to Priorities</a>
+</div>
+
+<div class="card shadow-sm border-0 p-4 mx-auto" style="max-width: 700px;">
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field|add_class:"form-control form-control-pink" }}
+                {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-pink">{{ view.button_text }}</button>
+    </form>
+</div>
+{% endblock %}
